@@ -1,7 +1,7 @@
 ---
 title: "Lab 02"
-author: ""
-date: ""
+author: "Anna Darwish"
+date: "February 1, 2020"
 output: 
   html_document:
     toc: true
@@ -35,7 +35,18 @@ you run a simulation on a high performance computer. Organize the contents in
 7. copy directory `organize_me/` and name the copy `simulations/`;
 8. delete directory `organize_me/` and all of its contents.
 
+Commands I used:
 
+1. rm *.input2
+2. rm -rf flags/
+3. mkdir test_data
+4. mv test* test_data/
+5. mkdir scripts_shell
+6. mv *.sh scripts_shell/
+7. mkdir scripts_R
+8. mv *.R scripts_R/
+9. mkdir hpc_start
+10. mv *.qsub hpc_start/
 
 ## Attributes
 
@@ -44,13 +55,15 @@ need to set the class attribute to `"POSIXct"`
 
 ```{r}
 z <- seq(0, 3600 * 10, by = 3600)
+attr(x=z, which="class") <- "POSIXct" 
+z
 ```
 
 What do you notice about the date-time? If you are unsure, check out
 [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time). A time converter is
 available [here](https://www.epochconverter.com).
 
-
+The default "start" time is the Unix epoch. This is 00:00:00 UTC on 1 January 1970. For my machine, it shows December 31, 1969 at 19:00:00 because I am located in GMT-05:00 
 
 ## Subsetting
 
@@ -66,13 +79,27 @@ Complete the following without using any loops.
 
 1. Subset only the letters from `x`.
 
+```{r}
+x[!grepl("\\d", x)]
+```
+
 2. Subset only the negative numbers from `x`.
+
+```{r}
+x[grepl("\\-", x)]
+```
 
 3. Select the numbers divisible by 3 from `x`.
 
+```{r}
+as.numeric(x[grepl("\\d", x)])[as.numeric(x[grepl("\\d", x)]) %% 3 == 0]
+```
+
 4. Remove all values with an even index from `x`.
 
-
+```{r}
+x[-2*(1:(length(x)/2))]
+```
 
 ## Git from the command line
 
